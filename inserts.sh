@@ -21,7 +21,7 @@ do
   RAND=$(((RANDOM%20)))
   JSON=$(python jsongen.py $RAND $RAND 1)
   echo "Writing $JSON"
-  curl -XPUT $HOST:8082/v2/namespaces/eric_ns/collections/collection/$idx\
+  curl -XPUT "$HOST:8082/v2/namespaces/$NAMESPACE/collections/collection/$idx"\
     -H "Content-type: application/json" -H "X-Cassandra-Token: $AUTH_TOKEN" -d "$JSON" & > /dev/null
   sleep $SLEEPTIME
   ((idx++))
